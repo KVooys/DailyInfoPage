@@ -1,6 +1,5 @@
 import feedparser
 import pprint
-import re
 import html
 
 def pull_xkcd():
@@ -24,4 +23,4 @@ def pull_tweakers():
     return tweakers_dict
 
 #pull_xkcd()
-pull_tweakers()
+#pull_tweakers()
