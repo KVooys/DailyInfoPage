@@ -9,9 +9,10 @@
 </head>
 
 <body>
+    <h1>XKCD</h1>
     <div>
         {% for k, v in xkcd.items() %}
-        <h1>{{k}}</h1>
+        <h2>{{k}}</h2>
         <!-- output contains the image tag, so we don't want to escape it -->
         {% autoescape false %}
         <p>
@@ -21,8 +22,20 @@
         {% endfor %}
     </div>
 
+    <h1>Tweakers</h1>
     <div>
         {% for k, v in tweakers.items() %}
+        <table>
+            <tr>
+                <a href = "{{ k }}" >{{v}}</a>
+            </tr>
+        </table>
+        {% endfor %}
+    </div>
+
+    <h1>Nu.nl</h1>
+    <div>
+        {% for k, v in nu.items() %}
         <table>
             <tr>
                 <a href = "{{ k }}" >{{v}}</a>

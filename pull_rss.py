@@ -1,6 +1,8 @@
 import feedparser
 import pprint
 import html
+from datetime import datetime, time
+
 
 def pull_xkcd():
     p = feedparser.parse("https://www.xkcd.com/rss.xml")
@@ -17,10 +19,26 @@ def pull_xkcd():
 def pull_tweakers():
     p = feedparser.parse("http://feeds.feedburner.com/tweakers/mixed")
     tweakers_dict = {}
+    todaytuple = datetime.timetuple(datetime.today())
+
     for i in p['entries']:
-        tweakers_dict[i['link']] = i['title']
-        print(i['link'], i['title'])
+        # only return articles from today:
+        ptime = i['published_parsed']
+        if ptime[0:3] == todaytuple[0:3]:
+            tweakers_dict[i['link']] = i['title']
+            print(i['link'], i['title'])
     return tweakers_dict
 
-#pull_xkcd()
-#pull_tweakers()
+
+def pull_nu():
+    p = feedparser.parse("https://www.nu.nl/rss/algemeen")
+    nu_dict = {}
+    for i in p['entries']:
+        nu_dict[i['link']] = i['title']
+        print(i['link'], i['title'])
+    return nu_dict
+
+
+# pull_xkcd()
+# pull_tweakers()
+# pull_nu()
